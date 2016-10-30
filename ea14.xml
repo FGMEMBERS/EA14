@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<!--Pipistrel Taurus Electro FDM by D-ECHO-->
+<!--Source: https://en.wikipedia.org/wiki/Pipistrel_Taurus#Specifications
+	empty weight: 628lbs
+	Stall speed: 34kn, approach speed (*1.3) : 44.2
+	Cruise speed: ? guess: 50, glide ratio 41:1
+-->
+<airplane mass="900">
+
+<!-- Approach configuration -->
+<approach speed="44.2" aoa="5.2" glide-angle="2">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.2"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture"  value="0.65"/>
+    <solve-weight idx="0" weight="170"/>
+    <solve-weight idx="1" weight="170"/>
+    <solve-weight idx="2" weight="0"/>
+    <solve-weight idx="3" weight="0"/>
+</approach>
+
+<!-- Cruise configuration -->
+<cruise speed="100" alt="5000" glide-angle="2">
+    <control-setting axis="/controls/engines/engine[0]/throttle" value="0.2"/>
+    <control-setting axis="/controls/engines/engine[0]/mixture"  value="0.65"/>
+    <solve-weight idx="0" weight="170"/>
+    <solve-weight idx="1" weight="170"/>
+    <solve-weight idx="2" weight="0"/>
+    <solve-weight idx="3" weight="0"/>
+</cruise>
+
+<!-- pilot's eyepoint -->
+<cockpit x="2.0053" y="0.1362" z="0.2482"/>
+
+<fuselage ax="4.30255" ay="0.0" az="0.27361" bx="-5.04893" by="0.0" bz="0.51454"
+		  width="1" taper="0.10" midpoint="0.24" idrag="1" />
+
+<wing x="-0.57041" y="0.4" z="0.73024" taper="0.379" incidence="3" twist="-2.5"
+	  length="9.6" chord="1.2" sweep="1" dihedral="4.5" >
+	<stall aoa="12" width="12" peak="1.5"/>
+		<flap0 start="0.512" end="0.9" lift="1.55" drag="1.3"/>
+			<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
+			<control-output control="FLAP0" side="left" prop="surface-positions/left-aileron-pos-norm"/>
+			<control-output control="FLAP0" side="right" prop="surface-positions/right-aileron-pos-norm"/>
+			<control-speed control="FLAP0" transition-time="0.2"/>
+<!--	<control-input axis="/controls/flight/aileron" control="FLAP0" split="true"/>
+	<control-output control="FLAP0" side="left"
+			prop="surface-positions/left-aileron-pos-norm"/>
+	<control-output control="FLAP0" side="right"
+			prop="surface-positions/right-aileron-pos-norm"/>
+	<control-speed control="FLAP0" transition-time="0.8"/>
+-->
+	<spoiler start="0.28" end="0.40" lift="-2" drag="30"/>
+			<control-input axis="/controls/flight/spoilers" control="SPOILER"/>
+<!--	<control-input axis="/controls/engines/engine[0]/throttle" control="SPOILER"
+			src0="0" src1="1.0"
+			dst0="1.0" dst1="0"/>
+-->
+	<control-output control="SPOILER" prop="/surface-positions/speedbrake-pos-norm"/>
+	<control-speed  control="SPOILER" transition-time="0.5"/>
+</wing>
+
+<hstab x="-5.2534" y="0.0" z="2.19117" taper="0.9" 
+	   length="1.505" chord="0.55" sweep="0" incidence="0" effectiveness="1.8">
+	<stall aoa="12" width="16" peak="1.5"/>
+		<flap0 start="0.0" end="1.0" lift="1.6" drag="1.45"/>
+			<control-input axis="/controls/flight/elevator" control="FLAP0"/>
+			<control-input axis="/controls/flight/elevator-trim" control="FLAP0"/>
+			<control-output control="FLAP0" prop="/surface-positions/elevator-pos-norm"/>
+</hstab>
+
+<vstab x="-4.96012" y="0" z="0.53971" taper="0.95" effectiveness="2.5"
+	   length="1.5" chord="1" sweep="15">
+	<stall aoa="15" width="14" peak="1.5"/>
+		<flap0 start="0" end="1" lift="1.6" drag="1.3"/>
+			<control-input axis="/controls/flight/rudder" square="true" control="FLAP0" invert="true"/>
+			<control-input axis="/controls/flight/rudder-trim" control="FLAP0" invert="true"/>
+			<control-output control="FLAP0" prop="/surface-positions/rudder-pos-norm" min="1" max="-1"/>
+</vstab>
+<!--The engine, actually electric but this is unfortunately not available for Yasim-->
+  <propeller x="-4.4" y="0" z="2.19314"
+             mass="50" 
+             moment="2.25"
+             radius="1.16"
+             cruise-speed="90"
+             cruise-rpm="1500"
+             cruise-alt="5000" 
+             cruise-power="79"
+             takeoff-power="80" 
+             takeoff-rpm="1500">
+             <actionpt x="-4.29657" y="0" z="2.19314"/>
+             <piston-engine eng-rpm="1500" 
+                            eng-power="80"
+                            displacement="152" 
+                            compression="8.5">
+                            <control-input control="THROTTLE" axis="/controls/engines/engine[0]/throttle" />
+                            <control-input control="STARTER" axis="/controls/engines/engine[0]/starter" />
+                            <control-input control="MAGNETOS" axis="/controls/engines/engine[0]/magnetos" />
+                            <control-input control="MIXTURE" axis="/controls/engines/engine[0]/mixture" />
+             </piston-engine>
+  </propeller>
+
+
+<!--Front wheel-->
+<gear x="3.77777" y="0.0" z="-0.30936" compression="0.1" retractable="false">
+  <control-input axis="/controls/flight/rudder" control="STEER" square="true"/>
+</gear>
+
+<!--Two main wheels-->
+<gear x="-0.15952" y="0.54315" z="-0.28404" compression="0.1" retractable="false">
+  <control-input axis="/controls/gear/brake-left" control="BRAKE"/>
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
+</gear>
+<gear x="-0.15952" y="-0.54315" z="-0.28404" compression="0.1" retractable="false">
+  <control-input axis="/controls/gear/brake-right" control="BRAKE"/>
+  <control-input axis="/controls/gear/brake-parking" control="BRAKE"/>
+</gear>
+
+
+<!-- Tail wheel -->
+
+<gear x="-4.86645" y="0" z="0.30953" 
+        compression="0.1"
+        spring="1"
+        damp="2" 
+        dfric="0.2"
+        sfric ="0.24">
+  <control-input axis="/controls/flight/rudder" control="STEER" square="true" invert="true"/>
+
+</gear>
+
+
+<!--left wing skid-->
+<gear x="-0.48029" y="8.43978" z="1.00802" skid="1" compression="0.1" spring="0.9" sfric="1" dfric="1"/>
+<!--right wing skid-->
+<gear x="-0.48029" y="-8.43978" z="1.00802" skid="1" compression="0.1" spring="0.9" sfric="1" dfric="1"/>
+
+<!--Mass and mass distribution: There is very much mass in front of the wings due to 4 (possible) pilots, which is equalized by having the engine far in the back as well as the batteries.-->
+<ballast x="-2" y="0" z="0.061" mass="50"/>
+
+
+
+<!-- hitch -->
+
+<hitch name="winch" x="0.3" y="0" z="0.0">
+	<tow length="51" weight-per-meter="0.1" elastic-constant="40000"  break-force="10000"/>
+	<!-- 4.5mm steel wire-->
+	<winch max-tow-length="1000" min-tow-length="1" initial-tow-length="1000" max-winch-speed="40" power="150" max-force="6000" />
+	<control-input axis="/controls/winch/place" control="PLACEWINCH"/>
+</hitch>
+
+<hitch name="aerotow" x="3.5772" y="0" z="-0.0134" force-is-calculated-by-other="0">
+	<tow length="60" weight-per-meter="0.035" elastic-constant="9000" break-force="10000" mp-auto-connect-period="0.0"/>
+	<winch max-tow-length="1000" min-tow-length="60" initial-tow-length="60"/>
+	<control-input axis="/controls/aerotow/find-aircraft" control="FINDAITOW"/>
+
+</hitch>
+  <!-- Réservoir de 26 litres de carburant -->
+  <tank x="-0.58409" y="0" z="0.5" capacity="40.20"/>
+  
+  <!--4 Humans-->
+  <!--Pilot-->
+  <weight x="2.01825" y="0.29878" z="0.46817" mass-prop="/sim/weight[0]/weight-lb"/>
+  <!--Copilot-->
+  <weight x="2.01825" y="-0.29878" z="0.46817" mass-prop="/sim/weight[1]/weight-lb"/>
+  <!--Passenger Left-->
+  <weight x="0.66823" y="0.298780" z="0.46817" mass-prop="/sim/weight[2]/weight-lb"/>
+  <!--Passenger Right-->
+  <weight x="0.66823" y="-0.29878" z="0.46817" mass-prop="/sim/weight[3]/weight-lb"/>
+
+</airplane>
