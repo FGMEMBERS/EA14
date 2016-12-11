@@ -382,6 +382,34 @@
       <z2-m> 0.03016 </z2-m>
     </axis>
   </animation>
+<animation>
+    <type>translate</type>
+    <object-name>wheelL</object-name>
+    <property>gear/gear[1]/compression-norm</property>
+    <factor>.1</factor>
+    <axis>
+      <x1-m> -0.1491</x1-m>
+      <y1-m> -0.58916</y1-m>
+      <z1-m> -0.29855 </z1-m>
+      <x2-m> -0.1491 </x2-m>
+      <y2-m> -0.38674 </y2-m>
+      <z2-m> 0.0467 </z2-m>
+    </axis>
+  </animation>
+<animation>
+    <type>translate</type>
+    <object-name>wheelR</object-name>
+    <property>gear/gear[2]/compression-norm</property>
+    <factor>.1</factor>
+    <axis>
+      <x1-m> -0.1491</x1-m>
+      <y1-m> 0.58916</y1-m>
+      <z1-m> -0.29855 </z1-m>
+      <x2-m> -0.1491 </x2-m>
+      <y2-m>0.38674 </y2-m>
+      <z2-m> 0.0467 </z2-m>
+    </axis>
+  </animation>
 <!--retraction--><!--
 <animation>
     <type>rotate</type>
@@ -537,6 +565,29 @@
       <z2-m> 0.1649 </z2-m>
     </axis>
   </animation>-->
+  <!--INTERIOR-->
+  <!--Select pilot models-->
+  
+  <animation>
+    <type>select</type>
+    <object-name>pilot</object-name>
+    <condition><not><equals>
+    <property>/sim/current-view/view-number</property>
+<value>0</value>
+</equals>
+</not>
+</condition>
+  </animation>
+  <animation>
+    <type>select</type>
+    <object-name>copilot</object-name>
+    <condition><not><equals>
+    <property>/sim/current-view/view-number</property>
+<value>8</value>
+</equals>
+</not>
+</condition>
+  </animation>
 <!--Prop-->
 
   <animation>
@@ -740,12 +791,12 @@
 		<max-deg>20</max-deg>
 		<factor>-20</factor>
 		<axis>
-      			<x1-m> -0.8589</x1-m>
-      			<y1-m> -0.5737 </y1-m>
-      			<z1-m> 0.0038 </z1-m>
-     			<x2-m> -0.9199 </x2-m>
-      			<y2-m> -5.9697 </y2-m>
-      			<z2-m> 0.2308 </z2-m>
+      			<x1-m> 0.63195</x1-m>
+      			<y1-m>-6.81752</y1-m>
+      			<z1-m> 0.90866 </z1-m>
+     			<x2-m> 0.63195</x2-m>
+      			<y2-m> -8.46554 </y2-m>
+      			<z2-m> 1.06458 </z2-m>
 		</axis>
 	</animation>
 	
@@ -757,12 +808,12 @@
 		<max-deg>20</max-deg>
 		<factor>20</factor>
 		<axis>
-      			<x1-m> -0.8589</x1-m>
-      			<y1-m> 0.5737 </y1-m>
-      			<z1-m> 0.0038 </z1-m>
-     			<x2-m> -0.9199 </x2-m>
-      			<y2-m> 5.9697 </y2-m>
-      			<z2-m> 0.2308 </z2-m>
+      			<x1-m> 0.63195</x1-m>
+      			<y1-m> 6.81752</y1-m>
+      			<z1-m> 0.90866 </z1-m>
+     			<x2-m> 0.63195</x2-m>
+      			<y2-m> 8.46554 </y2-m>
+      			<z2-m> 1.06458 </z2-m>
 		</axis>
 	</animation>
 	
@@ -774,9 +825,9 @@
 		<max-deg>20</max-deg>
 		<factor>-20</factor>
 		<center>
-			<x-m>3.1255</x-m>
+			<x-m>5.53793</x-m>
 			<y-m>0.0</y-m>
-			<z-m>1.0529</z-m>
+			<z-m>2.18</z-m>
 		</center>
 		<axis>
 			<x>0</x>
@@ -793,12 +844,12 @@
 		<max-deg>20</max-deg>
 		<factor>20</factor>
 		<axis>
-      			<x1-m> 3.0663</x1-m>
+      			<x1-m> 5.13512</x1-m>
       			<y1-m> 0.0 </y1-m>
-      			<z1-m> -0.0221 </z1-m>
-     			<x2-m> 3.2026 </x2-m>
+      			<z1-m>0.54001 </z1-m>
+     			<x2-m> 5.51796 </x2-m>
       			<y2-m> 0.0 </y2-m>
-      			<z2-m> 0.8748 </z2-m>
+      			<z2-m> 2.18931 </z2-m>
 		</axis>
 	</animation>
  
